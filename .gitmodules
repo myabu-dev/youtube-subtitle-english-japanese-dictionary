@@ -1,0 +1,3 @@
+[submodule "app/javascript-lemmatizer"]
+	path = app/javascript-lemmatizer
+	url = https://github.com/myabu-dev/javascript-lemmatizer
