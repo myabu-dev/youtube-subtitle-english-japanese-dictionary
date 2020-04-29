@@ -8,9 +8,6 @@ const CLONE_CAPTION_WINDOW_ID = 'extension-clone-caption-window'
 const ENG_WORD_SPAN_CLASS = 'extension-word-span'
 const WOED_SPAN_DATA_ATTRIBUTE = 'extension-word-data'
 
-const ADD_BTN_MESSAGE = '追加する'
-const ADD_BTN_MESSAGE_COMPLETE = '追加しました'
-
 // const DB_NAME = 'extension-youtube-subtitle-translator'
 // const DB_VERSION = 1
 // const WORD_STORE_NAME = 'wordNote'
@@ -82,11 +79,11 @@ function getFloatingWindowHtml(wordMeanList, sentence){
 
     const wordAddBtn = document.createElement('button')
     wordAddBtn.style.cssText = 'color: #EF6C00; border: solid 1px #EF6C00; border-radius: 3px; font-size:1.0rem; margin-left:10px;'
-    wordAddBtn.innerHTML = ADD_BTN_MESSAGE
+    wordAddBtn.innerHTML = chrome.i18n.getMessage('addButtonRegister')
     wordAddBtn.onclick = function(e){
       e.currentTarget.style.color = '#B0BEC5'
       e.currentTarget.style.borderColor = '#B0BEC5'
-      e.currentTarget.innerHTML = ADD_BTN_MESSAGE_COMPLETE
+      e.currentTarget.innerHTML = chrome.i18n.getMessage('addButtonComplete')
       e.currentTarget.disabled = true;
       addWord(word, wordMean.mean, sentence)
     }
