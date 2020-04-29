@@ -17,6 +17,16 @@ const jsFrame = new JSFrame()
 let WORD_CLICK_STOP_VIDEO_FLAG = true
 let WORD_CLOSE_START_VIDEO_FLAG = true
 
+chrome.runtime.onMessage.addListener(function(message) {
+  if(message.flag === 'loadSetting'){
+    loadSetting()
+  }
+})
+
+loadSetting()
+
+window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
+
 function loadSetting(){
   chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
     if(result.word_click_stop){
@@ -27,15 +37,6 @@ function loadSetting(){
     }
   })
 }
-chrome.runtime.onMessage.addListener(function(message) {
-  if(message.flag === 'loadSetting'){
-    loadSetting()
-  }
-})
-
-loadSetting()
-
-window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
 
 const wordFrame = jsFrame.create({
   title: 'Youtube Subtitle Translator',
@@ -53,7 +54,7 @@ wordFrame.htmlElement.parentElement.parentElement.style.zIndex = 99999
 
 wordFrame.on('closeButton', 'click', (_wordFrame, evt) => {
   const yVideo = document.getElementsByTagName('video')
-  if(yVideo){
+  if(yVideo && WORD_CLOSE_START_VIDEO_FLAG){
     yVideo[0].play()
   }
   _wordFrame.hide()
@@ -253,7 +254,7 @@ function getMeaningList(word, sentence){
 
 function clickWordEvent(word, sentence){
   const yVideo = document.getElementsByTagName('video')
-  if(yVideo){
+  if(yVideo && WORD_CLICK_STOP_VIDEO_FLAG){
     yVideo[0].pause()
   }
   const meanList = getMeaningList(word, sentence)
