@@ -1,6 +1,6 @@
 import Lemmatizer from '../javascript-lemmatizer/js/lemmatizer.js'
 import Ejdc from '../ejdc-hand/ejdc-hand.js'
-
+import {JSFrame} from 'jsframe';
 const lemmatizer = new Lemmatizer()
 
 const TIMEOUT_DULATION = 300;
@@ -11,14 +11,25 @@ const WOED_SPAN_DATA_ATTRIBUTE = 'extension-word-data'
 const ADD_BTN_MESSAGE = '追加する'
 const ADD_BTN_MESSAGE_COMPLETE = '追加しました'
 
+const DB_NAME = 'extension-youtube-subtitle-translator'
+const DB_VERSION = 1
 const WORD_STORE_NAME = 'wordNote'
 let DB = null
 
 const WHITLIST_CHARS = [
   "'", "’", '.'
 ]
-
 const jsFrame = new JSFrame()
+
+const firstDbOpenReq = indexedDB.open(DB_NAME, DB_VERSION)
+
+firstDbOpenReq.onupgradeneeded = function(event){
+  const db = event.target.result;
+  db.createObjectStore(WORD_STORE_NAME, {keyPath : 'word'})
+}
+firstDbOpenReq.onsuccess = function(event){
+  DB = event.target.result;
+}
 
 const wordFrame = jsFrame.create({
   title: 'Youtube Subtitle Translator',
