@@ -39,7 +39,7 @@ const wordFrame = jsFrame.create({
 })
 wordFrame.hideFrameComponent('minimizeButton');
 wordFrame.hideFrameComponent('maximizeButton');
-wordFrame.titleBarColorFocused = '#80DEEA'
+// wordFrame.titleBarColorFocused = '#80DEEA'
 
 wordFrame.htmlElement.parentElement.parentElement.style.zIndex = 99999
 
@@ -147,6 +147,7 @@ function setTitleObserver(){
     return
   }
 
+  setCaptionObserver()
   titleObserver.observe(title,{
     subtree: true, characterData: true, childList: true
   })
