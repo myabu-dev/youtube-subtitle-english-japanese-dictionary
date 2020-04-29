@@ -2,17 +2,21 @@
   "name": "__MSG_appName__",
   "short_name": "__MSG_appShortName__",
   "description": "__MSG_appDescription__",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "manifest_version": 2,
   "default_locale": "ja",
   "icons": {
     "16": "images/icon-16.png",
     "128": "images/icon-128.png"
   },
-  "background": {
-    "scripts": [
-      "scripts/background.js"
-    ]
+  "content_scripts": [{
+    "matches": ["https://www.youtube.com/*"],
+    "js": ["scripts/content.js"],
+    "run_at": "document_end",
+    "all_frames": false
+  }],
+  "browser_action": {
+    "default_popup": "scripts/popup.html"
   },
   "permissions": [
     "storage"
