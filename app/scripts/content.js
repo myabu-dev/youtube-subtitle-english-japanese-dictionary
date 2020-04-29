@@ -14,6 +14,27 @@ const WHITLIST_CHARS = [
 ]
 const jsFrame = new JSFrame()
 
+let WORD_CLICK_STOP_VIDEO_FLAG = true
+let WORD_CLOSE_START_VIDEO_FLAG = true
+
+function loadSetting(){
+  chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
+    if(result.word_click_stop){
+      WORD_CLICK_STOP_VIDEO_FLAG = result.word_click_stop;
+    }
+    if(result.word_close_start){
+      WORD_CLOSE_START_VIDEO_FLAG = result.word_close_start;
+    }
+  })
+}
+chrome.runtime.onMessage.addListener(function(message) {
+  if(message.flag === 'loadSetting'){
+    loadSetting()
+  }
+})
+
+loadSetting()
+
 window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
 
 const wordFrame = jsFrame.create({
@@ -44,9 +65,16 @@ function addWord(word, mean, sentence){
   )
 }
 
-function getFloatingWindowHtml(wordMeanList, sentence){
+function getFloatingWindowHtml(wordMeanList, sentence, word){
   const retHtml = document.createElement('div')
   retHtml.style.cssText = 'padding:10px 5px; font-size:1.5rem;'
+
+  if(wordMeanList.length === 0){
+    const wordNotFound = document.createElement('span')
+    wordNotFound.innerHTML = word + ' ' + chrome.i18n.getMessage('wordNotFound')
+    retHtml.appendChild(wordNotFound)
+    return retHtml
+  }
 
   for(const [wordIndex, wordMean] of wordMeanList.entries()){
     if(wordIndex !== 0){
@@ -230,7 +258,7 @@ function clickWordEvent(word, sentence){
   }
   const meanList = getMeaningList(word, sentence)
   wordFrame.getFrameView().innerHTML = ''
-  wordFrame.getFrameView().appendChild(getFloatingWindowHtml(meanList, sentence))
+  wordFrame.getFrameView().appendChild(getFloatingWindowHtml(meanList, sentence, word))
   wordFrame.show()
 }
 

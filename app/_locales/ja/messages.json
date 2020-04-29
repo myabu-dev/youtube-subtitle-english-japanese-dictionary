@@ -12,5 +12,8 @@
   },
   "addButtonComplete": {
     "message": "追加しました"
+  },
+  "wordNotFound": {
+    "message": "は見つかりませんでした"
   }
 }
