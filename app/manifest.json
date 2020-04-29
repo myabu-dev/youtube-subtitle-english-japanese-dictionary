@@ -14,6 +14,11 @@
     "run_at": "document_end",
     "all_frames": false
   }],
+  "background": {
+    "scripts": [
+      "scripts/background.js"
+    ]
+  },
   "browser_action": {
     "default_popup": "scripts/popup.html"
   },
