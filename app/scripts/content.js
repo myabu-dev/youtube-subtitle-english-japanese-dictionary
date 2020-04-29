@@ -20,6 +20,7 @@ let WORD_CLOSE_START_VIDEO_FLAG = true
 chrome.runtime.onMessage.addListener(function(message) {
   if(message.flag === 'loadSetting'){
     loadSetting()
+    console.log('load setting')
   }
 })
 
@@ -29,10 +30,10 @@ window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
 
 function loadSetting(){
   chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
-    if(result.word_click_stop){
+    if(result.word_click_stop !== null){
       WORD_CLICK_STOP_VIDEO_FLAG = result.word_click_stop;
     }
-    if(result.word_close_start){
+    if(result.word_close_start !== null){
       WORD_CLOSE_START_VIDEO_FLAG = result.word_close_start;
     }
   })
