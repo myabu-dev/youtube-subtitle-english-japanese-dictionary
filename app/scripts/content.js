@@ -1,6 +1,7 @@
 import Lemmatizer from '../javascript-lemmatizer/js/lemmatizer.js'
 import Ejdc from '../ejdc-hand/ejdc-hand.js'
-import {JSFrame} from 'jsframe';
+import {JSFrame} from 'jsframe'
+
 const lemmatizer = new Lemmatizer()
 
 const TIMEOUT_DULATION = 300;
@@ -8,25 +9,12 @@ const CLONE_CAPTION_WINDOW_ID = 'extension-clone-caption-window'
 const ENG_WORD_SPAN_CLASS = 'extension-word-span'
 const WOED_SPAN_DATA_ATTRIBUTE = 'extension-word-data'
 
-// const DB_NAME = 'extension-youtube-subtitle-translator'
-// const DB_VERSION = 1
-// const WORD_STORE_NAME = 'wordNote'
-// let DB = null
-
 const WHITLIST_CHARS = [
   "'", "’", '.'
 ]
 const jsFrame = new JSFrame()
 
-// const firstDbOpenReq = indexedDB.open(DB_NAME, DB_VERSION)
-
-// firstDbOpenReq.onupgradeneeded = function(event){
-//   const db = event.target.result;
-//   db.createObjectStore(WORD_STORE_NAME, {keyPath : 'word'})
-// }
-// firstDbOpenReq.onsuccess = function(event){
-//   DB = event.target.result;
-// }
+window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
 
 const wordFrame = jsFrame.create({
   title: 'Youtube Subtitle Translator',
@@ -39,7 +27,6 @@ const wordFrame = jsFrame.create({
 })
 wordFrame.hideFrameComponent('minimizeButton');
 wordFrame.hideFrameComponent('maximizeButton');
-// wordFrame.titleBarColorFocused = '#80DEEA'
 
 wordFrame.htmlElement.parentElement.parentElement.style.zIndex = 99999
 
@@ -135,8 +122,6 @@ function isAlphabetOrNum(str){
   }
 }
 
-window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
-
 
 function setTitleObserver(){
   console.log('observer')
@@ -161,7 +146,6 @@ const titleObserver = new MutationObserver( () => {
 })
 
 
-
 function setCaptionObserver(){
   const captionWindow = document.querySelector('div[id*="caption-window"]')
   if(captionWindow === null) {
@@ -180,8 +164,6 @@ function setCaptionObserver(){
     subtree: true
   })
 }
-
-
 
 
 function removeCloneCaption(){
@@ -230,7 +212,6 @@ function getMeaningList(word, sentence){
     if(firstWordList.includes(secondWord)){
       continue
     }
-
     let mean = Ejdc[secondWord]
     if(mean){
       if(!Array.isArray(mean)){
@@ -239,7 +220,6 @@ function getMeaningList(word, sentence){
       wordMeanList.push({word: secondWord, mean: mean})
     }
   }
-
   return wordMeanList
 }
 
@@ -263,13 +243,6 @@ const captionObserver = new MutationObserver( () => {
     return;
   }
 
-  // for(const line of captionWindow){
-  //   if(line.getAttribute('lang') && line.getAttribute('draggable') === 'true'){
-  //     console.log('auto generated')
-  //     return
-  //   }
-  // }
-
   captionObserver.disconnect();
 
   if(captionWindow.length > 1){
@@ -279,14 +252,9 @@ const captionObserver = new MutationObserver( () => {
     captionWindow = captionWindow[0]
   }
 
-
-
   captionWindow.style.display = 'block'
-
   addCloneCaption(captionWindow)
-
   captionWindow.style.display = 'none'
-
 
   const captionList = getCloneCaption().querySelectorAll('span > span > span')
   for(const line of captionList){
@@ -294,10 +262,8 @@ const captionObserver = new MutationObserver( () => {
     if(text === null)continue;
 
     line.innerHTML = null
-    // const separator = /(?<=\s+|\W|_)/ //split with sepalator char
     const separator = /([^a-zA-Z_0-9\.\’\']+|\.\.\.|\.\.|'')/
     const wordList = text.split(separator)
-    // console.log(wordList)
     let newInnerHTML = ''
     for(const word of wordList){
       let validWord = ''
@@ -315,13 +281,11 @@ const captionObserver = new MutationObserver( () => {
         validWord = validWord.slice(0, -1)
       }
       
-      // console.log(validWord)
       const wordSpanElm = document.createElement('span')
       wordSpanElm.innerHTML = validWord
       wordSpanElm.style.color = 'red'
       wordSpanElm.className = ENG_WORD_SPAN_CLASS
       wordSpanElm.setAttribute(WOED_SPAN_DATA_ATTRIBUTE, text);
-      // wordSpanElm.style.textDecoration = 'underline'
       const replaced = wordSpanElm.outerHTML
       if(word.length === colonCounter){
         newInnerHTML += word
@@ -337,20 +301,10 @@ const captionObserver = new MutationObserver( () => {
     span.onclick = ()=>{clickWordEvent(span.textContent.replace(/’/g,"'"), span.getAttribute(WOED_SPAN_DATA_ATTRIBUTE))}
   }
 
-
-  const captionContent = document.querySelectorAll('div[id*="caption-window"][draggable="true"] span span span')
-
   captionObserver.observe(captionWindow.parentElement.parentElement, {
     childList: true,
     subtree: true
   })
-
-  // console.log(captionContent)
-  // for(const line of captionContent){
-  //   if(line.textContent === null) continue;
-  //   console.log(line.textContent)
-  // }
-
 
 })
 
