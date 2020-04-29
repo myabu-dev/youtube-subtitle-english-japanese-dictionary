@@ -1,6 +1,9 @@
 const clickStopCheckbox = document.getElementById('click-stop-checkbox')
 const closeStartCheckbox = document.getElementById('close-start-checkbox')
 
+document.getElementById('click-stop-label').innerHTML = chrome.i18n.getMessage('popUpClickStopLabel')
+document.getElementById('close-start-label').innerHTML = chrome.i18n.getMessage('popUpCloseStartLabel')
+
 chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
   console.log(result.word_click_stop)
   if(result.word_click_stop !== null){
