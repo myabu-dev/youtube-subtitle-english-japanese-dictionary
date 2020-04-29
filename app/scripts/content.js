@@ -11,25 +11,25 @@ const WOED_SPAN_DATA_ATTRIBUTE = 'extension-word-data'
 const ADD_BTN_MESSAGE = '追加する'
 const ADD_BTN_MESSAGE_COMPLETE = '追加しました'
 
-const DB_NAME = 'extension-youtube-subtitle-translator'
-const DB_VERSION = 1
-const WORD_STORE_NAME = 'wordNote'
-let DB = null
+// const DB_NAME = 'extension-youtube-subtitle-translator'
+// const DB_VERSION = 1
+// const WORD_STORE_NAME = 'wordNote'
+// let DB = null
 
 const WHITLIST_CHARS = [
   "'", "’", '.'
 ]
 const jsFrame = new JSFrame()
 
-const firstDbOpenReq = indexedDB.open(DB_NAME, DB_VERSION)
+// const firstDbOpenReq = indexedDB.open(DB_NAME, DB_VERSION)
 
-firstDbOpenReq.onupgradeneeded = function(event){
-  const db = event.target.result;
-  db.createObjectStore(WORD_STORE_NAME, {keyPath : 'word'})
-}
-firstDbOpenReq.onsuccess = function(event){
-  DB = event.target.result;
-}
+// firstDbOpenReq.onupgradeneeded = function(event){
+//   const db = event.target.result;
+//   db.createObjectStore(WORD_STORE_NAME, {keyPath : 'word'})
+// }
+// firstDbOpenReq.onsuccess = function(event){
+//   DB = event.target.result;
+// }
 
 const wordFrame = jsFrame.create({
   title: 'Youtube Subtitle Translator',
@@ -55,31 +55,9 @@ wordFrame.on('closeButton', 'click', (_wordFrame, evt) => {
 });
 
 function addWord(word, mean, sentence){
-  const nowDate = new Date()
-  const registerYMD = nowDate.getFullYear + '/' + ( nowDate.getMonth() + 1 ) + '/' + nowDate.getDate()
-
-  const readTrans = DB.transaction(WORD_STORE_NAME, 'readonly')
-  const readStore = readTrans.objectStore(WORD_STORE_NAME)
-  const getWordReq = readStore.get(word)
-  getWordReq.onsuccess = function(e){
-    const saveValue = {
-      word: word,
-      sentence: sentence,
-      time: 1,
-      date: registerYMD,
-      utc: nowDate.getTime(),
-      mean: mean
-    }
-    if(event.target.result){
-      saveValue.time = event.target.result.time + 1 
-    }
-    const writeTrans = DB.transaction(WORD_STORE_NAME, 'readwrite')
-    const writeStore = writeTrans.objectStore(WORD_STORE_NAME)
-    const putReq = writeStore.put(saveValue)
-    putReq.onsuccess = function(){
-      // console.log('put data success')
-    }
-  }
+  chrome.runtime.sendMessage(
+    { flag: 'addWordNote', data:{ word: word, mean: mean, sentence: sentence} }
+  )
 }
 
 function getFloatingWindowHtml(wordMeanList, sentence){
