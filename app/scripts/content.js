@@ -75,6 +75,18 @@ function getFloatingWindowHtml(wordMeanList, sentence, word){
     const wordNotFound = document.createElement('span')
     wordNotFound.innerHTML = word + ' ' + chrome.i18n.getMessage('wordNotFound')
     retHtml.appendChild(wordNotFound)
+
+    const wordAddBtn = document.createElement('button')
+    wordAddBtn.style.cssText = 'color: #EF6C00; border: solid 1px #EF6C00; border-radius: 3px; font-size:1.0rem; margin-left:10px;'
+    wordAddBtn.innerHTML = chrome.i18n.getMessage('addButtonRegister')
+    wordAddBtn.onclick = function(e){
+      e.currentTarget.style.color = '#B0BEC5'
+      e.currentTarget.style.borderColor = '#B0BEC5'
+      e.currentTarget.innerHTML = chrome.i18n.getMessage('addButtonComplete')
+      e.currentTarget.disabled = true;
+      addWord(word, [], sentence)
+    }
+    retHtml.appendChild(wordAddBtn)
     return retHtml
   }
 
