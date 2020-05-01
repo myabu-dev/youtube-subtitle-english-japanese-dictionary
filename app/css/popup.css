@@ -9,7 +9,7 @@
 .word-note-btn{
   display: inline-block;
   text-align: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
   width: 100%;
   padding: 0.3em 1em;
   text-decoration: none;
