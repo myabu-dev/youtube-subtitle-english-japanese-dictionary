@@ -1,0 +1,90 @@
+.word-table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  font-size: 13px;
+}
+
+.word-table th {
+  padding: 10px;
+  font-weight: bold;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-bottom: 2px solid #039BE5;
+  background: #B3E5FC;
+}
+
+.word-table td{
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+}
+
+.cube-transition > div {
+  background-color: orange;
+}
+
+.loader{
+  display: block;
+}
+
+.top-area{
+  text-align: center;
+}
+
+.title{
+  font-size: 2.0rem;
+}
+
+
+.btn-flat-border-blue {
+  margin: 0px 5px;
+  font-size: 1.0rem;
+  display: inline-block;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #0099FF;
+  border: solid 2px #0099FF;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border-blue:hover {
+  background: #0099FF;
+  color: white;
+}
+
+.btn-flat-border-red {
+  display: inline-block;
+  width: 100%;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #f44336;
+  border: solid 2px #f44336;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border-red:hover {
+  background: #f44336;
+  color: white;
+}
+
+.btn-flat-border-mean {
+  display: inline-block;
+  width: 100%;
+  padding: 0.3em 1em;
+  text-decoration: none;
+  color: #0099FF;
+  border: solid 2px #0099FF;
+  border-radius: 3px;
+  transition: .4s;
+}
+
+.btn-flat-border-mean:hover {
+  background: #0099FF;
+  color: white;
+}

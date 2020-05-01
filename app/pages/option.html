@@ -2,10 +2,57 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" href="../css/select.css">
+    <link rel="stylesheet" href="../css/option.css">
+    <link rel="stylesheet" href="../css/popup_switch.css">
   </head>
 
   <body>
-    <h1>aaa</h1>
+    <div class="top-area">
+      <span class="title">単語帳</span>
+      <br>
+      <br>
+      <span style="font-size:1.0rem;">ソート</span>
+      <div class="cp_ipselect cp_sl01">
+        <select id="word-sort-select">
+          <option value="dayUp">登録日昇順</option>
+          <option selected value="dayDown">登録日降順</option>
+          <option value="wordUp">単語昇順</option>
+          <option value="wordDown">単語降順</option>
+          <option value="timeUp">登録回数昇順</option>
+          <option value="timeDown">登録回数降順</option>
+        </select>
+      </div>
+      <a class="btn-flat-border-blue" id="csv-download" download="YoutubeSubtitleTranslator.csv">CSV出力</a>
+      <br>
+      <div style="margin-top: 10px;">
+        <label class="toggle">
+          <span class="toggle-label" style="font-size: 1.0rem;">削除する時に確認ダイアログを出す</span>
+          <input class="toggle-checkbox" id="check-delete-checkbox" type="checkbox" checked>
+          <div class="toggle-switch"></div>
+        </label>
+      </div>
+    </div>
+
+    <div style="text-align: center; display: none; margin-top: 40px;" id="word-note-empty">
+      <span style="font-size:1.2rem;">登録されている単語はありません</span>
+    </div>
+
+    <table class="word-table" id="word-table">
+      <thead>
+        <tr>
+          <!-- <th>選択</th> -->
+          <th style="width: 6em;">操作</th>
+          <th>単語</th>
+          <th style="width: 11em;">意味</th>
+          <th style="max-width: 70%;">使用されていた文</th>
+          <th>登録回数</th>
+          <th>登録日</th>
+        </tr>
+      </thead>
+      <tbody id="word-table-body">
+      </tbody>
+    </table>
     <script type="text/javascript" src="../scripts/option.js"></script>
   </body>
 </html>
