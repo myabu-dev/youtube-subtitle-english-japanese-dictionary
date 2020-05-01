@@ -13,6 +13,9 @@
     "run_at": "document_end",
     "all_frames": false
   }],
+  "options_ui": {
+    "page": "pages/option.html"
+  },
   "background": {
     "scripts": [
       "scripts/background.js"
