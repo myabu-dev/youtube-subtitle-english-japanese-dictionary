@@ -16,7 +16,7 @@ firstDbOpenReq.onsuccess = function(event){
 
 function addWordNote(word, mean, sentence){
   const nowDate = new Date()
-  const registerYMD = nowDate.getFullYear + '/' + ( nowDate.getMonth() + 1 ) + '/' + nowDate.getDate()
+  const registerYMD = nowDate.getFullYear() + '/' + ( nowDate.getMonth() + 1 ) + '/' + nowDate.getDate()
 
   const readTrans = DB.transaction(WORD_STORE_NAME, 'readonly')
   const readStore = readTrans.objectStore(WORD_STORE_NAME)
