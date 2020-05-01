@@ -11,6 +11,7 @@
     "webextension-toolbox": "latest"
   },
   "dependencies": {
-    "jsframe.js": "^1.5.16"
+    "jsframe.js": "^1.5.16",
+    "swiper": "^5.3.8"
   }
 }
