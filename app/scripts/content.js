@@ -286,7 +286,7 @@ function setTitleObserver(){
 
   setCaptionObserver()
   titleObserver.observe(title,{
-    subtree: true, characterData: true, childList: true
+    characterData: true, childList: true
   })
 }
 
