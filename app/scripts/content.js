@@ -39,7 +39,6 @@ function loadSetting(){
     }
 
     if(result.first_flag == null){
-      chrome.storage.local.set({'first_flag': 'first'})
       showHowToUse()
     }
   })
@@ -70,6 +69,11 @@ function showHowToUse(){
 
   howToUseWindow.getFrameView().appendChild(getHowToUseHtml())
   howToUseWindow.show()
+
+  howToUseWindow.on('closeButton', 'click', (_howtoFrame, evt) => {
+    chrome.storage.local.set({'first_flag': 'first'})
+    _howtoFrame.closeFrame()
+  });
 
   const swiper = new Swiper('.swiper-container', {
     pagination: {
