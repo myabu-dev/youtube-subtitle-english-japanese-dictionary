@@ -404,6 +404,7 @@ function clickWordEvent(word, sentence){
     wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
   }
 
+  wordFrame.getFrameView.scrollTop = 0
   wordFrame.show()
 }
 
