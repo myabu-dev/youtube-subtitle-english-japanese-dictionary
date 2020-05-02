@@ -31,9 +31,17 @@ sortSelect.addEventListener('change', (event) => {
   }
 })
 
+const wordFrameWidth = Math.max(window.innerWidth / 5, 320)
+const wordFrameHeight = Math.max(wordFrameWidth * 3 / 5, 240)
 const wordFrame = jsFrame.create({
-  title: 'Youtube Subtitle Translator',
-  left: 20 + (320 + 20), top: 50, width: 320, height: 220, minWidth: 200, minHeight: 110,
+  name: 'word-note-window',
+  title: 'Youtube字幕 英和辞典',
+  left: Math.min(window.innerWidth - wordFrameWidth - 100, window.innerWidth / 2 - wordFrameWidth / 2),
+  top: Math.min(wordFrameHeight * 2, window.innerHeight / 2 - wordFrameHeight / 2),
+  width: wordFrameWidth,
+  height: wordFrameHeight,
+  minWidth: 200,
+  minHeight: 110,
   appearanceName: 'redstone',
   style: {
     backgroundColor: 'rgba(255,255,255,0.95)',
@@ -119,7 +127,7 @@ function getFloatingWindowHtml(word, mean){
     mean = mean.replace(/[》)]/g,'$&</span>')
     if(mean.length > 1){
       const meanContainer = document.createElement('div')
-      meanContainer.style.cssText = 'font-size:0.9rem; display:flex;　align-items: baseline;'
+      meanContainer.style.cssText = 'font-size:0.8rem; display:flex;　align-items: baseline;'
 
       const meanNumber = document.createElement('div')
       meanNumber.style.cssText = 'padding-left:5px; font-weight:bold'
@@ -148,6 +156,25 @@ function getFloatingWindowHtml(word, mean){
 function showWordMean(word, mean){
   wordFrame.getFrameView().innerHTML = ''
   wordFrame.getFrameView().appendChild(getFloatingWindowHtml(word, mean))
+
+  const windowSize = wordFrame.getSize()
+  const windowPositoin = wordFrame.getPosition()
+  if(window.innerWidth < (windowPositoin.x + windowSize.width)){
+    const new_x = window.innerWidth - windowSize.width - 20
+    wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
+  }else if(windowPositoin.x - windowSize.width < 0){
+    const new_x = 20
+    wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
+  }
+
+  if(window.innerHeight < (windowPositoin.y + windowSize.height)){
+    const new_y = window.innerHeight - windowSize.height - 20
+    wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
+  }else if(windowPositoin.y - windowSize.height < 0){
+    const new_y = 50
+    wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
+  }
+
   wordFrame.show()
 }
 
