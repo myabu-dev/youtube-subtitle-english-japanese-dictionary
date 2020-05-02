@@ -136,9 +136,18 @@ function getHowToUseHtml(){
   return container
 }
 
+const wordFrameWidth = Math.max(window.innerWidth / 5, 320)
+const wordFrameHeight = Math.max(wordFrameWidth * 3 / 5, 240)
+
 const wordFrame = jsFrame.create({
+  name: 'dictionary-window',
   title: 'Youtube字幕 英和辞典',
-  left: 20 + (320 + 20), top: 50, width: 320, height: 220, minWidth: 200, minHeight: 110,
+  left: Math.min(window.innerWidth - wordFrameWidth - 100, wordFrameWidth * 3),
+  top: window.innerHeight - wordFrameHeight * 2,
+  width: wordFrameWidth,
+  height: wordFrameHeight,
+  minWidth: 200,
+  minHeight: 110,
   appearanceName: 'redstone',
   style: {
     backgroundColor: 'rgba(255,255,255,0.95)',
@@ -370,6 +379,27 @@ function clickWordEvent(word, sentence){
   const meanList = getMeaningList(word, sentence)
   wordFrame.getFrameView().innerHTML = ''
   wordFrame.getFrameView().appendChild(getFloatingWindowHtml(meanList, sentence, word))
+
+  const windowSize = wordFrame.getSize()
+  const windowPositoin = wordFrame.getPosition()
+  console.log(windowSize)
+  console.log(windowPositoin)
+  if(window.innerWidth < (windowPositoin.x + windowSize.width)){
+    const new_x = window.innerWidth - windowSize.width - 20
+    wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
+  }else if(windowPositoin.x - windowSize.width < 0){
+    const new_x = 20
+    wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
+  }
+
+  if(window.innerHeight < (windowPositoin.y + windowSize.height)){
+    const new_y = window.innerHeight - windowSize.height - 20
+    wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
+  }else if(windowPositoin.y - windowSize.height < 0){
+    const new_y = 50
+    wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
+  }
+
   wordFrame.show()
 }
 
