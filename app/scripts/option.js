@@ -182,6 +182,7 @@ function getCsvContent(tableData){
   let retCsv = '単語,意味,使用されていた文,登録回数,登録日\n'
   for(const wordData of tableData){
     let meanText = '"'
+    let sentenceText = '"'
     for(const [meanIndex, mean] of wordData.mean.entries()){
       let number = null
       if(mean.length > 1){
@@ -193,8 +194,17 @@ function getCsvContent(tableData){
         meanText += `\n${number}${mean}`
       }
     }
+
+    for(const [sentenceIndex, sentence] of wordData.sentence.entries()){
+      if(sentenceIndex === 0){
+        sentenceText += sentence
+      }else{
+        sentenceText += `\n${sentence}`
+      }
+    }
     meanText += '"'
-    retCsv += `${wordData.word},${meanText},${wordData.sentence},${wordData.time},${wordData.date}\n`
+    sentenceText += '"'
+    retCsv += `${wordData.word},${meanText},${sentenceText},${wordData.time},${wordData.date}\n`
   }
   return retCsv
 }
@@ -273,7 +283,15 @@ function renderTable(noteData, order='dayDown'){
     }
 
     const sentenceTd = document.createElement('td')
-    sentenceTd.innerHTML = wordData.sentence
+    let sentenceInner = ''
+    for(const [i, sentence] of wordData.sentence.entries()){
+      if(i === 0){
+        sentenceInner += sentence
+      }else{
+        sentenceInner += '<br>' + sentence
+      }
+    }
+    sentenceTd.innerHTML = sentenceInner
     tableLine.appendChild(sentenceTd)
 
     const timeTd = document.createElement('td')

@@ -24,13 +24,15 @@ function addWordNote(word, mean, sentence){
   getWordReq.onsuccess = function(event){
     const saveValue = {
       word: word,
-      sentence: sentence,
+      sentence: [sentence],
       time: 1,
       date: registerYMD,
       utc: nowDate.getTime(),
       mean: mean
     }
     if(event.target.result){
+      saveValue.sentence = event.target.result.sentence
+      saveValue.sentence.push(sentence)
       saveValue.time = event.target.result.time + 1 
     }
     const writeTrans = DB.transaction(WORD_STORE_NAME, 'readwrite')
