@@ -68,7 +68,7 @@ function initPage(noteData){
 
 function deleteWord(word){
   if(document.getElementById('check-delete-checkbox').checked){
-    const userCheck = confirm(`${word} を削除します`)
+    const userCheck = confirm(`${word} を削除しますか`)
     if(!userCheck)return
   }
 
