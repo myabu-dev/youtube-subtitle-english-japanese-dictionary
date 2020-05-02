@@ -202,6 +202,9 @@ function renderTable(noteData, order='dayDown'){
   if(noteData.length === 0){
     document.getElementById('word-table').style.display = 'none'
     document.getElementById('word-note-empty').style.display = 'block'
+  }else{
+    document.getElementById('word-table').style.display = 'table'
+    document.getElementById('word-note-empty').style.display = 'none'
   }
   
   const tBody = document.getElementById('word-table-body')
