@@ -4,7 +4,7 @@
     "description": "The name of the application"
   },
   "appDescription": {
-    "message": "Youtubeの字幕の英単語を調べます。知らない英単語を単語帳に登録して後から見ることもできます。",
+    "message": "Youtubeの字幕の英単語を調べることができます。知らない英単語を単語帳に登録して後から見ることもできます。",
     "description": "The description of the application"
   },
   "addButtonRegister": {
