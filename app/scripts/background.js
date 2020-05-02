@@ -21,7 +21,7 @@ function addWordNote(word, mean, sentence){
   const readTrans = DB.transaction(WORD_STORE_NAME, 'readonly')
   const readStore = readTrans.objectStore(WORD_STORE_NAME)
   const getWordReq = readStore.get(word)
-  getWordReq.onsuccess = function(e){
+  getWordReq.onsuccess = function(event){
     const saveValue = {
       word: word,
       sentence: sentence,
