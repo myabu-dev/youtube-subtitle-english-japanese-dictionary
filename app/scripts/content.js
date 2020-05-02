@@ -217,7 +217,7 @@ function getFloatingWindowHtml(wordMeanList, sentence, word){
     wordContainer.appendChild(wordElm)
 
     const wordAddBtn = document.createElement('button')
-    wordAddBtn.style.cssText = 'color: #EF6C00; border: solid 1px #EF6C00; border-radius: 3px; font-size:1.0rem; margin-left:10px;'
+    wordAddBtn.style.cssText = 'color: #EF6C00; border: solid 1px #EF6C00; border-radius: 3px; font-size:1.0rem; margin-left:10px; background-color: transparent;'
     wordAddBtn.innerHTML = chrome.i18n.getMessage('addButtonRegister')
     wordAddBtn.onclick = function(e){
       e.currentTarget.style.color = '#B0BEC5'
