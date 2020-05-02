@@ -305,11 +305,11 @@ function setCaptionObserver(){
     return
   }
 
-  if(captionWindow.getAttribute('draggable') !== 'true'){
-    console.log('not drag')
-    window.setTimeout(setCaptionObserver, TIMEOUT_DULATION)
-    return
-  }
+  // if(captionWindow.getAttribute('draggable') !== 'true'){
+  //   console.log('not drag')
+  //   window.setTimeout(setCaptionObserver, TIMEOUT_DULATION)
+  //   return
+  // }
 
   captionObserver.observe(captionWindow.parentElement.parentElement, {
     childList: true,
@@ -410,7 +410,7 @@ function clickWordEvent(word, sentence){
 const captionObserver = new MutationObserver( () => {
   removeCloneCaption()
 
-  let captionWindow = document.querySelectorAll('div[id*="caption-window"][draggable="true"]')
+  let captionWindow = document.querySelectorAll('div[id*="caption-window"]')
   if(captionWindow.length === 0){
     console.log('none')
     return;
