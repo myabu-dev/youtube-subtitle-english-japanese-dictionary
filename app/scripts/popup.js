@@ -6,13 +6,13 @@ document.getElementById('close-start-label').innerHTML = chrome.i18n.getMessage(
 
 chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
   console.log(result.word_click_stop)
-  if(result.word_click_stop !== null){
+  if(result.word_click_stop != null){
     clickStopCheckbox.checked = result.word_click_stop
   }else{
     clickStopCheckbox.checked = true
   }
 
-  if(result.word_close_start !== null){
+  if(result.word_close_start != null){
     closeStartCheckbox.checked = result.word_close_start;
   }else{
     closeStartCheckbox.checked = true
