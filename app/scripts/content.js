@@ -49,7 +49,7 @@ function showHowToUse(){
   const frameHeight = window.innerWidth / 2 * 9 / 16
   const howToUseWindow = jsFrame.create({
     name: 'howto-use-widow',
-    title: 'Youtube 字幕 英和辞典 の使い方',
+    title: 'Youtube字幕 英和辞典 の使い方',
     left: frameWidth / 2,
     top: frameHeight / 2,
     width: frameWidth,
