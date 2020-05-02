@@ -1,6 +1,7 @@
 import Lemmatizer from '../javascript-lemmatizer/js/lemmatizer.js'
 import Ejdc from '../ejdc-hand/ejdc-hand.js'
 import {JSFrame} from 'jsframe'
+import Swiper from 'swiper';
 
 const lemmatizer = new Lemmatizer()
 
@@ -29,18 +30,114 @@ loadSetting()
 window.setTimeout(setTitleObserver, TIMEOUT_DULATION)
 
 function loadSetting(){
-  chrome.storage.local.get(["word_click_stop", "word_close_start"], function (result) {
-    if(result.word_click_stop !== null){
+  chrome.storage.local.get(["word_click_stop", "word_close_start", "first_flag"], function (result) {
+    if(result.word_click_stop != null){
       WORD_CLICK_STOP_VIDEO_FLAG = result.word_click_stop;
     }
-    if(result.word_close_start !== null){
+    if(result.word_close_start != null){
       WORD_CLOSE_START_VIDEO_FLAG = result.word_close_start;
+    }
+
+    if(result.first_flag == null){
+      chrome.storage.local.set({'first_flag': 'first'})
+      showHowToUse()
     }
   })
 }
 
+function showHowToUse(){
+  const frameWidth = window.innerWidth / 2
+  const frameHeight = window.innerWidth / 2 * 9 / 16
+  const howToUseWindow = jsFrame.create({
+    name: 'howto-use-widow',
+    title: 'Youtube 字幕 英和辞典 の使い方',
+    left: frameWidth / 2,
+    top: frameHeight / 2,
+    width: frameWidth,
+    height: frameHeight,
+    movable: true,
+    resizable: false,
+    appearanceName: 'redstone',
+    style: {
+      backgroundColor: 'rgba(255,255,255,0.95)',
+      overflow: 'auto'
+    }
+  })
+  howToUseWindow.hideFrameComponent('minimizeButton')
+  howToUseWindow.hideFrameComponent('maximizeButton')
+
+  howToUseWindow.htmlElement.parentElement.parentElement.style.zIndex = 99999
+
+  howToUseWindow.getFrameView().appendChild(getHowToUseHtml())
+  howToUseWindow.show()
+
+  const swiper = new Swiper('.swiper-container', {
+    pagination: {
+      el: '.swiper-pagination',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
+  })
+}
+
+
+function getHowToUseHtml(){
+  const container = document.createElement('div')
+  container.style.height = '100%'
+  container.style.width = '100%'
+  container.className = 'swiper-container'
+
+  const wrapper = document.createElement('div')
+  wrapper.className = 'swiper-wrapper'
+  container.appendChild(wrapper)
+
+  const div1 = document.createElement('div')
+  const img1 = document.createElement('img')
+  img1.src = chrome.extension.getURL('images/howto_1.svg')
+  div1.className = 'swiper-slide'
+  div1.appendChild(img1)
+  wrapper.appendChild(div1)
+
+  const div2 = document.createElement('div')
+  const img2 = document.createElement('img')
+  img2.src = chrome.extension.getURL('images/howto_2.svg')
+  div2.className = 'swiper-slide'
+  div2.appendChild(img2)
+  wrapper.appendChild(div2)
+
+  const div3 = document.createElement('div')
+  const img3 = document.createElement('img')
+  img3.src = chrome.extension.getURL('images/howto_3.svg')
+  div3.className = 'swiper-slide'
+  div3.appendChild(img3)
+  wrapper.appendChild(div3)
+
+  const div4 = document.createElement('div')
+  const img4 = document.createElement('img')
+  img4.src = chrome.extension.getURL('images/howto_4.svg')
+  div4.className = 'swiper-slide'
+  div4.appendChild(img4)
+  wrapper.appendChild(div4)
+
+  const pagenation = document.createElement('div')
+  pagenation.className = 'swiper-pagination'
+  container.appendChild(pagenation)
+
+  const prevBtn = document.createElement('div')
+  prevBtn.className = 'swiper-button-prev'
+  container.appendChild(prevBtn)
+
+  const nextBtn = document.createElement('div')
+  nextBtn.className = 'swiper-button-next'
+  container.appendChild(nextBtn)
+
+  return container
+}
+
 const wordFrame = jsFrame.create({
-  title: 'Youtube Subtitle Translator',
+  title: 'Youtube字幕 英和辞典',
   left: 20 + (320 + 20), top: 50, width: 320, height: 220, minWidth: 200, minHeight: 110,
   appearanceName: 'redstone',
   style: {
@@ -48,8 +145,8 @@ const wordFrame = jsFrame.create({
     overflow: 'auto'
   }
 })
-wordFrame.hideFrameComponent('minimizeButton');
-wordFrame.hideFrameComponent('maximizeButton');
+wordFrame.hideFrameComponent('minimizeButton')
+wordFrame.hideFrameComponent('maximizeButton')
 
 wordFrame.htmlElement.parentElement.parentElement.style.zIndex = 99999
 

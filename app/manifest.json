@@ -10,6 +10,7 @@
   "content_scripts": [{
     "matches": ["https://www.youtube.com/*"],
     "js": ["scripts/content.js"],
+    "css": ["css/swiper.min.css"],
     "run_at": "document_end",
     "all_frames": false
   }],
@@ -26,5 +27,11 @@
   },
   "permissions": [
     "storage"
+  ],
+  "web_accessible_resources": [
+    "images/howto_1.svg",
+    "images/howto_2.svg",
+    "images/howto_3.svg",
+    "images/howto_4.svg"
   ]
 }
