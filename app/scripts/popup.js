@@ -38,7 +38,7 @@ function cliskStopSwitchChange(){
 }
 
 function closeStartSwitchChange(){
-  const closeStartFlag = clickStopCheckbox.checked
+  const closeStartFlag = closeStartCheckbox.checked
   chrome.storage.local.set({'word_close_start': closeStartFlag}, function () {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs){
       chrome.tabs.sendMessage(tabs[0].id, {
