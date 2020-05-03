@@ -1,29 +1,40 @@
-# Youtube Subtitle Translator
+# Youtube Subtitle English-Japanese Dictionary
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+This is an browser extension. This extension can loock up English words in Youtube subtitle. And You can also register unfamiliar English words in your note and view them later.
 
-## Install
+## Download
 
-	$ npm install
+Firefox
+
+Chrome
+
+
 
 ## Development
 
+### Install
+
+```
+$ npm install
+```
+
+### Develop
+
     npm run dev chrome
     npm run dev firefox
-    npm run dev opera
-    npm run dev edge
 
-## Build
+### Build
 
     npm run build chrome
     npm run build firefox
-    npm run build opera
-    npm run build edge
 
-## Environment
+### Environment
 
 The build tool also defines a variable named `process.env.NODE_ENV` in your scripts. 
 
-## Docs
+### Docs
+
+This extension use webextension-toolbox
 
 * [webextension-toolbox](https://github.com/HaNdTriX/webextension-toolbox)
+
