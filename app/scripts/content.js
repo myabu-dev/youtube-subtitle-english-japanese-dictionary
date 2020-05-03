@@ -21,7 +21,7 @@ let WORD_CLOSE_START_VIDEO_FLAG = true
 chrome.runtime.onMessage.addListener(function(message) {
   if(message.flag === 'loadSetting'){
     loadSetting()
-    console.log('load setting')
+    // console.log('load setting')
   }
 })
 
@@ -276,7 +276,7 @@ function isAlphabetOrNum(str){
 
 
 function setTitleObserver(){
-  console.log('observer')
+  // console.log('observer')
   const title = document.querySelector('title')
   
   if(title == null){
@@ -292,7 +292,7 @@ function setTitleObserver(){
 
 const titleObserver = new MutationObserver( () => {
   captionObserver.disconnect()
-  console.log('title change')
+  // console.log('title change')
   removeCloneCaption()
   setCaptionObserver()
 })
@@ -386,8 +386,8 @@ function clickWordEvent(word, sentence){
 
   const windowSize = wordFrame.getSize()
   const windowPositoin = wordFrame.getPosition()
-  console.log(windowSize)
-  console.log(windowPositoin)
+  // console.log(windowSize)
+  // console.log(windowPositoin)
   if(window.innerWidth < (windowPositoin.x + windowSize.width)){
     const new_x = window.innerWidth - windowSize.width - 20
     wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
@@ -413,7 +413,7 @@ const captionObserver = new MutationObserver( () => {
 
   let captionWindow = document.querySelectorAll('div[id*="caption-window"]')
   if(captionWindow.length === 0){
-    console.log('none')
+    // console.log('none')
     return;
   }
 

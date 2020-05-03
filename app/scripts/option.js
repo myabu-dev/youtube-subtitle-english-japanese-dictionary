@@ -11,7 +11,7 @@ firstDbOpenReq.onsuccess = function(event){
   const DB = event.target.result
   const getWordNoteAllRequest = DB.transaction(WORD_STORE_NAME, "readonly").objectStore(WORD_STORE_NAME).getAll()
   getWordNoteAllRequest.onsuccess = function(event){
-    console.log(event.target.result)
+    // console.log(event.target.result)
     initPage(event.target.result)
     DB.close()
   }
