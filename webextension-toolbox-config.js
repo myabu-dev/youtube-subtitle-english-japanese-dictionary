@@ -1,4 +1,5 @@
 const webpack = require('webpack')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
  
 module.exports = {
   webpack: (config, { dev, vendor }) => {
@@ -10,8 +11,16 @@ module.exports = {
         }
       }
     })
-    // config.resolve.push({alias: {'jsframe': 'jsframe.js/dist/jsframe.min.js'}})
-    // Important: return the modified config
+    config.plugins.unshift(new CopyWebpackPlugin([
+      { from: 'ejdc-hand/ejdc-hand.json' }
+    ]))
+    // config.plugins.push(new CopyPlugin([
+    //   {
+    //       from: `ejdc-hand/ejdic-hand.json`,
+    //       to: config.output.path + '/ejdc-hand/ejdc-hand.json',
+    //       cache: true,
+    //   }
+    // ]))
     return config
   }
 }

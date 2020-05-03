@@ -1,5 +1,4 @@
 import Lemmatizer from '../javascript-lemmatizer/js/lemmatizer.js'
-import Ejdc from '../ejdc-hand/ejdc-hand.js'
 import {JSFrame} from 'jsframe'
 import Swiper from 'swiper';
 
@@ -9,6 +8,10 @@ const TIMEOUT_DULATION = 300;
 const CLONE_CAPTION_WINDOW_ID = 'extension-clone-caption-window'
 const ENG_WORD_SPAN_CLASS = 'extension-word-span'
 const WOED_SPAN_DATA_ATTRIBUTE = 'extension-word-data'
+
+let Ejdc = null
+const ejdcHandUrl = chrome.runtime.getURL('ejdc-hand.json');
+fetch(ejdcHandUrl).then((response) => response.json()).then((json) => Ejdc = json)
 
 const WHITLIST_CHARS = [
   "'", "’", '.'

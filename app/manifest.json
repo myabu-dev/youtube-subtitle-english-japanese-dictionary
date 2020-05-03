@@ -1,7 +1,7 @@
 {
   "name": "__MSG_appName__",
   "description": "__MSG_appDescription__",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "manifest_version": 2,
   "default_locale": "ja",
   "icons": {
@@ -32,6 +32,7 @@
     "images/howto_1.svg",
     "images/howto_2.svg",
     "images/howto_3.svg",
-    "images/howto_4.svg"
+    "images/howto_4.svg",
+    "ejdc-hand.json"
   ]
 }
