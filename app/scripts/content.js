@@ -146,8 +146,8 @@ const wordFrameHeight = Math.max(wordFrameWidth * 3 / 5, 240)
 const wordFrame = jsFrame.create({
   name: 'dictionary-window',
   title: 'Youtube字幕 英和辞典',
-  left: Math.min(window.innerWidth - wordFrameWidth - 100, wordFrameWidth * 3),
-  top: window.innerHeight - wordFrameHeight * 2,
+  left: 20,
+  top: 50,
   width: wordFrameWidth,
   height: wordFrameHeight,
   minWidth: 200,
@@ -391,7 +391,7 @@ function clickWordEvent(word, sentence){
   if(window.innerWidth < (windowPositoin.x + windowSize.width)){
     const new_x = window.innerWidth - windowSize.width - 20
     wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
-  }else if(windowPositoin.x - windowSize.width < 0){
+  }else if(windowPositoin.x < 0){
     const new_x = 20
     wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
   }

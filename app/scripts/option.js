@@ -162,7 +162,7 @@ function showWordMean(word, mean){
   if(window.innerWidth < (windowPositoin.x + windowSize.width)){
     const new_x = window.innerWidth - windowSize.width - 20
     wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
-  }else if(windowPositoin.x - windowSize.width < 0){
+  }else if(windowPositoin.x < 0){
     const new_x = 20
     wordFrame.setPosition(new_x, windowPositoin.y, 'LEFT_TOP')
   }
@@ -171,7 +171,7 @@ function showWordMean(word, mean){
     const new_y = window.innerHeight - windowSize.height - 20
     wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
   }else if(windowPositoin.y - windowSize.height < 0){
-    const new_y = 50
+    const new_y = 20
     wordFrame.setPosition(wordFrame.getPosition().x, new_y, 'LEFT_TOP')
   }
 
