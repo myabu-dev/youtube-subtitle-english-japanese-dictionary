@@ -35,7 +35,7 @@ const wordFrameWidth = Math.max(window.innerWidth / 5, 320)
 const wordFrameHeight = Math.max(wordFrameWidth * 3 / 5, 240)
 const wordFrame = jsFrame.create({
   name: 'word-note-window',
-  title: 'Youtube字幕 英和辞典',
+  title: 'YouTube字幕 英和辞典',
   left: Math.min(window.innerWidth - wordFrameWidth - 100, window.innerWidth / 2 - wordFrameWidth / 2),
   top: Math.min(wordFrameHeight * 2, window.innerHeight / 2 - wordFrameHeight / 2),
   width: wordFrameWidth,

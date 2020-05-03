@@ -1,10 +1,10 @@
 {
   "appName": {
-    "message": "Youtube字幕 英和辞典",
+    "message": "YouTube字幕 英和辞典",
     "description": "The name of the application"
   },
   "appDescription": {
-    "message": "Youtubeの字幕の英単語を調べることができます。知らない英単語を単語帳に登録して後から見ることもできます。",
+    "message": "YouTubeの字幕の英単語を調べることができます。知らない英単語を単語帳に登録して後から見ることもできます。",
     "description": "The description of the application"
   },
   "addButtonRegister": {

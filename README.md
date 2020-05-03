@@ -1,6 +1,6 @@
-# Youtube Subtitle English-Japanese Dictionary
+# YouTube Subtitle English-Japanese Dictionary
 
-This is an browser extension. This extension can loock up English words in Youtube subtitle. And You can also register unfamiliar English words in your note and view them later.
+This is an browser extension. This extension can loock up English words in YouTube subtitle. And You can also register unfamiliar English words in your note and view them later.
 
 ## Download
 
