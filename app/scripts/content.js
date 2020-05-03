@@ -457,7 +457,7 @@ const captionObserver = new MutationObserver( () => {
       
       const wordSpanElm = document.createElement('span')
       wordSpanElm.innerHTML = validWord
-      wordSpanElm.style.color = 'red'
+      // wordSpanElm.style.color = 'red'
       wordSpanElm.className = ENG_WORD_SPAN_CLASS
       wordSpanElm.setAttribute(WOED_SPAN_DATA_ATTRIBUTE, text);
       const replaced = wordSpanElm.outerHTML
