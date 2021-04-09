@@ -414,7 +414,7 @@ function clickWordEvent(word, sentence){
 const captionObserver = new MutationObserver( () => {
   removeCloneCaption()
 
-  let captionWindow = document.querySelectorAll('div[id*="caption-window"]')
+  let captionWindow = document.querySelectorAll('div[id^="caption-window"]')
   if(captionWindow.length === 0){
     // console.log('none')
     return;
