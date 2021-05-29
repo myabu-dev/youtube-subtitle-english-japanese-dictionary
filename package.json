@@ -12,6 +12,6 @@
   },
   "dependencies": {
     "jsframe.js": "^1.5.16",
-    "swiper": "latest"
+    "swiper": "6.X"
   }
 }
