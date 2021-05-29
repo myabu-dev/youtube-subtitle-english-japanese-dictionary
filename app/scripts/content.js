@@ -1,6 +1,7 @@
 import Lemmatizer from '../javascript-lemmatizer/js/lemmatizer.js'
 import {JSFrame} from 'jsframe'
-import Swiper from 'swiper';
+import Swiper, { Navigation, Pagination } from 'swiper';
+Swiper.use([Navigation, Pagination])
 
 const lemmatizer = new Lemmatizer()
 
