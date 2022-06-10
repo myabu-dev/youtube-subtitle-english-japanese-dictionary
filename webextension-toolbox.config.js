@@ -11,9 +11,11 @@ module.exports = {
         }
       }
     })
-    config.plugins.unshift(new CopyWebpackPlugin([
-      { from: 'ejdc-hand/ejdc-hand.json' }
-    ]))
+    config.plugins.unshift(new CopyWebpackPlugin({
+      patterns: [
+      { from: 'ejdc-hand/ejdc-hand.json'}
+      ]
+     }))
     // config.plugins.push(new CopyPlugin([
     //   {
     //       from: `ejdc-hand/ejdic-hand.json`,
