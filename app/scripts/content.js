@@ -315,7 +315,7 @@ function setCaptionObserver(){
   //   return
   // }
 
-  captionObserver.observe(captionWindow.parentElement.parentElement, {
+  captionObserver.observe(captionWindow.parentElement, {
     childList: true,
     subtree: true
   })
@@ -334,6 +334,8 @@ function addCloneCaption(original){
 
   const clone = original.cloneNode(true)
   clone.id = CLONE_CAPTION_WINDOW_ID
+  // シークバーより上で、設定のウィンドウが71なのでその下
+  clone.style.zIndex = 70
   original.parentElement.appendChild(clone)
 }
 
@@ -479,7 +481,7 @@ const captionObserver = new MutationObserver( () => {
     span.onclick = ()=>{clickWordEvent(span.textContent.replace(/’/g,"'"), span.getAttribute(WOED_SPAN_DATA_ATTRIBUTE))}
   }
 
-  captionObserver.observe(captionWindow.parentElement.parentElement, {
+  captionObserver.observe(captionWindow.parentElement, {
     childList: true,
     subtree: true
   })
