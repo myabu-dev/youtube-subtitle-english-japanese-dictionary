@@ -7,7 +7,8 @@
     "build": "webextension-toolbox build"
   },
   "devDependencies": {
-    "@webextension-toolbox/webextension-toolbox": "^5.2.2"
+    "@webextension-toolbox/webextension-toolbox": "^5.2.2",
+    "copy-webpack-plugin": "^11.0.0"
   },
   "dependencies": {
     "jsframe.js": "^1.5.16",
