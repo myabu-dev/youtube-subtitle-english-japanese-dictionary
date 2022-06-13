@@ -7,7 +7,6 @@
     "build": "webextension-toolbox build"
   },
   "devDependencies": {
-    "serialize-javascript": "^3.1.0",
     "@webextension-toolbox/webextension-toolbox": "^5.2.2"
   },
   "dependencies": {
