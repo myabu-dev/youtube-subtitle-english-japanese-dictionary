@@ -7,8 +7,10 @@
     "build": "webextension-toolbox build"
   },
   "devDependencies": {
-    "serialize-javascript": "^3.1.0",
-    "webextension-toolbox": "latest"
+    "@babel/preset-env": "^7.18.2",
+    "@webextension-toolbox/webextension-toolbox": "^5.2.2",
+    "babel-loader": "^8.2.5",
+    "copy-webpack-plugin": "^11.0.0"
   },
   "dependencies": {
     "jsframe.js": "^1.5.16",
