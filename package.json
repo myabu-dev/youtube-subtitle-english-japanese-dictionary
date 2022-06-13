@@ -8,7 +8,7 @@
   },
   "devDependencies": {
     "serialize-javascript": "^3.1.0",
-    "webextension-toolbox": "latest"
+    "@webextension-toolbox/webextension-toolbox": "^5.2.2"
   },
   "dependencies": {
     "jsframe.js": "^1.5.16",
