@@ -122,10 +122,10 @@ function getFloatingWindowHtml(word, mean){
   single_hr.style.cssText = 'border-top: 1px solid #bbb; margin: 5px 0px;' 
   retHtml.appendChild(single_hr)
 
-  for(let [meanIndex, mean] of mean.entries()){
-    mean = mean.replace(/[《(]/g, '<span style="color:#43A047;">$&') 
-    mean = mean.replace(/[》)]/g,'$&</span>')
-    if(mean.length > 1){
+  for(let [meanIndex, meanText] of mean.entries()){
+    meanText = meanText.replace(/[《(]/g, '<span style="color:#43A047;">$&') 
+    meanText = meanText.replace(/[》)]/g,'$&</span>')
+    if(meanText.length > 1){
       const meanContainer = document.createElement('div')
       meanContainer.style.cssText = 'font-size:0.8rem; display:flex;　align-items: baseline;'
 
@@ -135,7 +135,7 @@ function getFloatingWindowHtml(word, mean){
       meanNumber.innerHTML = `${meanIndex}.&nbsp;`
 
       const meanBody = document.createElement('div')
-      meanBody.innerHTML = mean
+      meanBody.innerHTML = meanText
 
       meanContainer.appendChild(meanNumber)
       meanContainer.appendChild(meanBody)
@@ -144,10 +144,9 @@ function getFloatingWindowHtml(word, mean){
     }else{
       const meanBody = document.createElement('div')
       meanBody.style.cssText = 'padding-left:5px; font-size:1.2rem;'
-      meanBody.innerHTML = mean
+      meanBody.innerHTML = meanText
       retHtml.appendChild(meanBody)
     }
-    
   }
 
   return retHtml
